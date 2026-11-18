@@ -1,5 +1,9 @@
 /* EDT — catalogo, carrello e ordine con PayPal.me */
 const PAYPAL_ME = 'ilgabbah';
+/* Codice commerciante PayPal. Se è compilato, il pagamento porta con sé l'ordine completo
+   e il passaggio della mail non serve più. Vuoto = PayPal.me + mail. */
+const PAYPAL_BUSINESS = '';
+const SITE_URL = 'https://ilgabbah-ux.github.io/enduro-drinking-team/';
 const ORDER_EMAIL = 'ilgabbah@gmail.com';
 const SHIP_SMALL = 2;   // solo adesivi, spille, calamite, patch: in busta
 const SHIP_FULL = 7;    // appena c'è un capo o un oggetto grande
@@ -316,6 +320,21 @@ function orderText(code, f) {
     `Nome: ${f.nome}\nIndirizzo: ${f.indirizzo}\nTelefono: ${f.telefono}\nEmail: ${f.email}\n` +
     (f.note ? `Note: ${f.note}\n` : '') + `\nPagamento: PayPal.me/${PAYPAL_ME}`;
 }
+/* carrello PayPal: ogni riga con taglia e personalizzazioni, spedizione, codice ordine e recapiti */
+function paypalCart(code, f) {
+  const { ship } = totals();
+  const q = new URLSearchParams({ cmd: '_cart', upload: '1', business: PAYPAL_BUSINESS, currency_code: 'EUR', lc: 'IT',
+    charset: 'utf-8', no_shipping: '2', no_note: '0', invoice: code,
+    custom: [code, f.nome, f.telefono, f.email].join(' | ').slice(0, 255), return: SITE_URL, cancel_return: SITE_URL });
+  cart.forEach((l, i) => {
+    const p = byId(l.id), n = i + 1, d = lineDesc(l);
+    q.set('item_name_' + n, (p.name + (d ? ` (${d})` : '')).slice(0, 127));
+    q.set('amount_' + n, p.price.toFixed(2));
+    q.set('quantity_' + n, String(l.qty));
+    q.set('shipping_' + n, n === 1 ? ship.toFixed(2) : '0.00');
+  });
+  return 'https://www.paypal.com/cgi-bin/webscr?' + q.toString();
+}
 let lastMail = '';
 $('#checkout-form').addEventListener('submit', e => {
   e.preventDefault();
@@ -325,8 +344,11 @@ $('#checkout-form').addEventListener('submit', e => {
   const body = orderText(code, f);
   lastMail = `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent('Ordine shop ' + code)}&body=${encodeURIComponent(body)}`;
   $('#done-code').textContent = code;
-  $('#done-tot').textContent = eur(tot);
+  document.querySelectorAll('.done-tot').forEach(n => n.textContent = eur(tot));
   $('#done-pay').href = `https://paypal.me/${PAYPAL_ME}/${tot.toFixed(2)}EUR`;
+  $('#done-uno').hidden = !PAYPAL_BUSINESS;
+  $('#done-due').hidden = !!PAYPAL_BUSINESS;
+  if (PAYPAL_BUSINESS) $('#done-pay1').href = paypalCart(code, f);
   $('#done-mail').href = lastMail;
   $('#done-text').value = body;
   e.target.hidden = true;

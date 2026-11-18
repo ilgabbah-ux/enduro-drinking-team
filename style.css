@@ -904,3 +904,14 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-event
 .badge--tappo .badge__cap { animation: none; }
 .badge--tappo text { font-size: 14.5px; letter-spacing: 0; fill: #15110d; }
 .badge--tappo img { inset: 24% 23% auto; width: 54%; filter: drop-shadow(0 3px 6px rgba(0,0,0,.6)); }
+
+/* ===================== v11: patti chiari sotto lo shop ===================== */
+.patti { display: grid; gap: 0; margin: 34px 0 0; border-top: 2px solid var(--birra); }
+.patti > div { padding: 16px 0; border-bottom: 1px solid var(--linea); }
+.patti dt { font-family: var(--display); font-size: 1.05rem; line-height: 1.15; color: var(--carta); }
+.patti dd { margin: 6px 0 0; color: var(--nebbia); font-size: .95rem; line-height: 1.5; max-width: 46ch; }
+.patti a { color: var(--birra); text-decoration: underline; text-underline-offset: 3px; }
+@media (min-width: 760px) {
+  .patti { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 28px; }
+  .patti > div { border-bottom: 0; padding: 20px 0 0; }
+}

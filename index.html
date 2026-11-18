@@ -3,11 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Enduro Drinking Team</title>
-<meta name="description" content="Enduro Drinking Team: enduro, fango e amicizia in Piemonte dal 2017. Video, storia e lo shop ufficiale del merchandising EDT.">
+<title>Enduro Drinking Team · Shop ufficiale, video e storia dell'EDT</title>
+<meta name="description" content="Enduro Drinking Team: enduro, fango e amicizia in Piemonte dal 2017. Magliette, felpe, completi da gara e adesivi ufficiali EDT, più i video delle uscite.">
+<link rel="canonical" href="https://ilgabbah-ux.github.io/enduro-drinking-team/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Enduro Drinking Team">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://ilgabbah-ux.github.io/enduro-drinking-team/">
 <meta property="og:title" content="Enduro Drinking Team · Shop ufficiale">
 <meta property="og:description" content="Non è un giro. È una storia. Magliette, felpe, completi da gara e adesivi dell'EDT.">
-<meta property="og:image" content="img/g/hero-poster.jpg">
+<meta property="og:image" content="https://ilgabbah-ux.github.io/enduro-drinking-team/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Piloti dell'Enduro Drinking Team nel fango al tramonto">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Enduro Drinking Team · Shop ufficiale">
+<meta name="twitter:description" content="Non è un giro. È una storia. Magliette, felpe, completi da gara e adesivi dell'EDT.">
+<meta name="twitter:image" content="https://ilgabbah-ux.github.io/enduro-drinking-team/img/og.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://ilgabbah-ux.github.io/enduro-drinking-team/#edt","name":"Enduro Drinking Team","alternateName":"EDT","url":"https://ilgabbah-ux.github.io/enduro-drinking-team/","logo":"https://ilgabbah-ux.github.io/enduro-drinking-team/img/logo-edt.png","foundingDate":"2017","description":"Gruppo di amici enduristi del Piemonte, con shop ufficiale del merchandising.","sameAs":["https://www.facebook.com/endurodrinkingteam/","https://www.instagram.com/endurodrinking/","https://www.tiktok.com/@endurodrinkingteam","https://www.youtube.com/@piemonteoff-road"]},{"@type":"WebSite","url":"https://ilgabbah-ux.github.io/enduro-drinking-team/","name":"Enduro Drinking Team","inLanguage":"it","publisher":{"@id":"https://ilgabbah-ux.github.io/enduro-drinking-team/#edt"}}]}</script>
 <meta name="theme-color" content="#0f0d0b">
 <link rel="icon" href="img/mascotte.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,7 +132,12 @@
       <div class="vetrina" id="vetrina" aria-label="In vetrina"></div>
       <div class="chips" id="chips" role="group" aria-label="Filtra i prodotti"></div>
       <div class="grid" id="grid"></div>
-      <p class="ship-info"><strong>Spedizione:</strong> 2 € se prendi solo adesivi, spille, calamite o patch (arrivano in busta), 7 € appena nel carrello c'è un capo o un oggetto più grande.</p>
+      <dl class="patti" aria-label="Come funziona l'ordine">
+        <div><dt>Paghi con PayPal</dt><dd>Carta o conto, con la protezione acquisti di PayPal. Non serve registrarsi sul sito.</dd></div>
+        <div><dt>Spedizione chiara</dt><dd>7 € in tutta Italia con corriere. 2 € in busta se prendi solo adesivi, spille, calamite o patch.</dd></div>
+        <div><dt>Taglie senza sorprese</dt><dd>In ogni scheda trovi la tabella con le misure reali del capo, in centimetri.</dd></div>
+        <div><dt>Risponde una persona</dt><dd>Dubbi su taglia o ordine? <a href="#contatti">Scrivici una mail</a> o un messaggio su <a href="https://www.instagram.com/endurodrinking/" target="_blank" rel="noopener">Instagram</a>.</dd></div>
+      </dl>
     </div>
   </section>
 
@@ -302,7 +320,8 @@
     </div>
     <ul class="social">
       <li><a href="https://www.instagram.com/endurodrinking/" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="https://www.tiktok.com/@endurodrinking" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a href="https://www.tiktok.com/@endurodrinkingteam" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a href="https://www.facebook.com/endurodrinkingteam/" target="_blank" rel="noopener">Facebook</a></li>
       <li><a href="https://www.youtube.com/@piemonteoff-road" target="_blank" rel="noopener">YouTube</a></li>
     </ul>
   </div>
@@ -353,11 +372,18 @@
     </form>
     <div class="done" id="done" hidden>
       <h3>Ordine <span id="done-code"></span></h3>
+      <div id="done-uno" hidden>
+        <p>Un solo passaggio: paghi e l'ordine ci arriva insieme al pagamento, con articoli, taglie e indirizzo.</p>
+        <a class="btn btn--paypal btn--wide" id="done-pay1" target="_blank" rel="noopener">Paga <span class="done-tot"></span> con PayPal</a>
+        <p class="small">Conserva il codice dell'ordine: ti scriviamo alla mail che hai indicato appena spediamo.</p>
+      </div>
+      <div id="done-due">
       <p>Ultimi due passaggi:</p>
-      <a class="btn btn--paypal btn--wide" id="done-pay" target="_blank" rel="noopener">1. Paga <span id="done-tot"></span> con PayPal</a>
+      <a class="btn btn--paypal btn--wide" id="done-pay" target="_blank" rel="noopener">1. Paga <span class="done-tot"></span> con PayPal</a>
       <p class="small">Nella nota del pagamento scrivi il codice dell'ordine.</p>
       <a class="btn btn--dark btn--wide" id="done-mail">2. Invia l'ordine via mail</a>
       <p class="small">Se la mail non si apre, copia il riepilogo e mandalo a ilgabbah@gmail.com.</p>
+      </div>
       <textarea id="done-text" rows="6" readonly aria-label="Riepilogo dell'ordine"></textarea>
       <div class="done__row">
         <button class="btn btn--ghost-dark" id="done-copy" type="button">Copia riepilogo</button>
