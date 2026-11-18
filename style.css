@@ -897,3 +897,10 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-event
 .guida-no { margin: -6px 0 18px; font-size: .88rem; color: #4a4038; }
 .guida + .opt, .guida + .guida-no { margin-top: 4px; }
 .seg--size span { font-size: .95rem; }
+
+/* ===================== v10: il bollino diventa un tappo a corona ===================== */
+.badge--tappo { width: clamp(150px, 15vw, 210px); rotate: -8deg; filter: drop-shadow(0 14px 22px rgba(0,0,0,.55)); }
+.badge--tappo::before { display: none; }
+.badge--tappo .badge__cap { animation: none; }
+.badge--tappo text { font-size: 14.5px; letter-spacing: 0; fill: #15110d; }
+.badge--tappo img { inset: 24% 23% auto; width: 54%; filter: drop-shadow(0 3px 6px rgba(0,0,0,.6)); }
