@@ -912,6 +912,10 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-event
 .patti dd { margin: 6px 0 0; color: var(--nebbia); font-size: .95rem; line-height: 1.5; max-width: 46ch; }
 .patti a { color: var(--birra); text-decoration: underline; text-underline-offset: 3px; }
 @media (min-width: 760px) {
-  .patti { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 28px; }
+  .patti { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); column-gap: 28px; }
   .patti > div { border-bottom: 0; padding: 20px 0 0; }
 }
+
+/* ===================== v12: link diretto al prodotto ===================== */
+.sheet__share { display: inline-flex; align-items: center; gap: 8px; margin: 2px 0 14px; padding: 0; border: 0; background: none; font: inherit; font-size: .9rem; font-weight: 600; color: #4a4038; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.sheet__share:hover, .sheet__share:focus-visible { color: #15110d; }

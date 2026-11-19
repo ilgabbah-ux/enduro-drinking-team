@@ -218,8 +218,10 @@ function openProduct(id) {
   if (p.numero) f += `<label class="field"><span>Numero</span><input name="numero" inputmode="numeric" pattern="[0-9]{1,3}" maxlength="3" placeholder="Es. 14" required></label>`;
   f += `<div class="field field--qty"><span id="pd-qty-l">Quantità</span><div class="qty"><button type="button" data-q="-1" aria-label="Uno in meno">−</button><input name="qty" type="number" min="1" max="50" value="1" required aria-labelledby="pd-qty-l"><button type="button" data-q="1" aria-label="Uno in più">+</button></div></div>`;
   $('#pd-fields').innerHTML = f;
-  $('#pd-ship').textContent = p.small ? 'Spedizione 2 € in busta, se ordini solo adesivi e piccoli.' : 'Spedizione 7 € in tutta Italia.';
+  $('#pd-ship').textContent = (p.small ? 'Spedizione 2 € in busta, se ordini solo adesivi e piccoli.' : 'Spedizione 7 € in tutta Italia.') +
+    ' Spediamo in 3-4 giorni.' + (p.nome || p.numero ? ' Prodotto personalizzato: non si può rendere.' : '');
   pdTotal();
+  history.replaceState(null, '', '#p=' + p.id);
   dlg.showModal();
   dlg.scrollTop = 0;
 }
@@ -248,6 +250,23 @@ $('#pd-fields').addEventListener('click', e => {
 });
 $('#pd-fields').addEventListener('input', e => { if (e.target.name === 'qty') pdTotal(); });
 $('#pd-close').addEventListener('click', () => dlg.close());
+/* link diretto al prodotto: endurodrinkingteam.com/#p=<id> apre la sua scheda */
+dlg.addEventListener('close', () => history.replaceState(null, '', location.pathname + location.search));
+$('#pd-share').addEventListener('click', async () => {
+  const url = SITE_URL + '#p=' + current.id;
+  try {
+    if (navigator.share) await navigator.share({ title: current.name + ' · Enduro Drinking Team', url });
+    else { await navigator.clipboard.writeText(url); toast('Link copiato'); }
+  } catch (err) { if (err && err.name !== 'AbortError') { try { await navigator.clipboard.writeText(url); toast('Link copiato'); } catch (e2) { toast(url); } } }
+});
+function openFromHash() {
+  const m = location.hash.match(/^#p=([\w-]+)$/); if (!m) return;
+  const p = PRODUCTS.find(x => x.id === m[1]); if (!p) return;
+  const shop = document.querySelector('#shop'); if (shop) shop.scrollIntoView({ block: 'start' });
+  openProduct(p.id);
+}
+window.addEventListener('hashchange', openFromHash);
+window.addEventListener('load', () => setTimeout(openFromHash, 400));
 $('#pd-fields').addEventListener('change', e => {
   if (e.target.name === 'model') { $('#pd-size').innerHTML = sizesHtml(current, e.target.value); return; }
   if (e.target.name !== 'color' || !current.colorImgs) return;
