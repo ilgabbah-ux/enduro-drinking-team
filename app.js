@@ -2,7 +2,7 @@
 const PAYPAL_ME = 'ilgabbah';
 /* Codice commerciante PayPal. Se è compilato, il pagamento porta con sé l'ordine completo
    e il passaggio della mail non serve più. Vuoto = PayPal.me + mail. */
-const PAYPAL_BUSINESS = '';
+const PAYPAL_BUSINESS = 'F5MQUKZSPRACN';
 const SITE_URL = 'https://endurodrinkingteam.com/';
 const ORDER_EMAIL = 'ilgabbah@gmail.com';
 const SHIP_SMALL = 2;   // solo adesivi, spille, calamite, patch: in busta
