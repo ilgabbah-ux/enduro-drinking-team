@@ -494,14 +494,6 @@ document.querySelectorAll('.fig__pic[data-foto]').forEach(box => {
   im.src = box.dataset.foto;
 });
 
-/* video di apertura: compare solo quando è davvero pronto a partire */
-(() => {
-  const v = document.querySelector('.hero__vid'); if (!v) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.remove(); return; }
-  v.addEventListener('playing', () => v.classList.add('on'), { once: true });
-  v.querySelector('source').addEventListener('error', () => v.remove());
-})();
-
 /* ---------- grafica v5: intro, percorso, frasi, 3D, GoPro ---------- */
 (() => {
   const motionOk = !matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -616,6 +608,21 @@ document.querySelectorAll('.fig__pic[data-foto]').forEach(box => {
     addEventListener('pointermove', e => { mx = (e.clientX / innerWidth - .5) * 2; }, { passive: true });
     wake();
   }
+})();
+
+/* ---------- apertura in video: parte dopo il caricamento, muta e in loop, e si ferma quando esci dall'apertura ---------- */
+(() => {
+  const v = document.querySelector('.hero__vid'); if (!v) return;
+  if ((navigator.connection && navigator.connection.saveData) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const go = () => {
+    v.src = matchMedia('(max-width: 760px)').matches ? v.dataset.m : v.dataset.d;
+    v.addEventListener('playing', () => v.classList.add('on'), { once: true });
+    const p = v.play(); if (p && p.catch) p.catch(() => {});
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { const q = v.play(); if (q && q.catch) q.catch(() => {}); } else v.pause();
+    }), { threshold: .05 }).observe(v.closest('.hero'));
+  };
+  document.readyState === 'complete' ? setTimeout(go, 300) : addEventListener('load', () => setTimeout(go, 300));
 })();
 
 /* ---------- video verticali: partono da soli senza audio quando entrano in vista, un tocco per sentirli ---------- */
