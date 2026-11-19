@@ -1062,3 +1062,27 @@ img { height: auto; }
 .hero__vid.on { opacity: 1; }
 @media (max-width: 760px) { .hero__vid { object-position: 50% 0%; } }
 @media (prefers-reduced-motion: reduce) { .hero__media { animation: none; translate: none; } .hero__vid { display: none; } }
+
+/* pagine legali */
+.legal-page .top { background: var(--notte); justify-content: space-between; }
+.legal__back { color: var(--carta); font-weight: 700; text-decoration: none; border: 2px solid var(--linea); border-radius: 999px; padding: 10px 18px; font-size: .95rem; }
+.legal__back:hover { border-color: var(--birra); color: var(--birra); }
+.legal { max-width: 780px; padding-top: calc(120px + env(safe-area-inset-top, 0px)); padding-bottom: 48px; }
+.legal__kicker { margin: 0 0 6px; color: var(--birra); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: .85rem; }
+.legal h1 { font-size: clamp(2.2rem, 8vw, 3.6rem); line-height: 1; margin: 0 0 10px; }
+.legal__date { color: var(--nebbia); font-size: .95rem; margin: 0 0 28px; }
+.legal h2 { font: 800 1.2rem var(--body); font-variation-settings: 'wdth' 112; text-transform: none; letter-spacing: 0; margin: 34px 0 8px; color: var(--carta); }
+.legal h2::after { display: none; }
+.legal p, .legal td { color: var(--nebbia); }
+.legal p { margin: 0 0 12px; max-width: 68ch; }
+.legal a, .legal__foot a { color: var(--birra); }
+.legal__table { overflow-x: auto; margin: 6px 0 14px; border: 1px solid var(--linea); border-radius: 14px; }
+.legal table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: .95rem; }
+.legal th, .legal td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--linea); }
+.legal th { color: var(--carta); font-weight: 700; }
+.legal tr:last-child td { border-bottom: 0; }
+.legal td:first-child { color: var(--carta); font-weight: 600; }
+.legal__other { margin-top: 36px !important; }
+.legal__foot { padding-top: 22px; padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--linea); color: var(--nebbia); font-size: .9rem; }
+.foot__end a { color: inherit; }
+.foot__end a:hover { color: var(--birra); }
