@@ -131,17 +131,25 @@ function cardHtml(p, i) {
       </button>
     </article>`;
 }
+const SHORT = { small: 6 };   // nella vista "Tutto" questi gruppi mostrano solo i primi, il resto dietro un pulsante
 function renderGrid() {
   const groups = GROUPS.filter(g => activeCat === 'all' || g.id === activeCat);
   $('#grid').innerHTML = groups.map(g => {
     const list = PRODUCTS.filter(p => inCat(p, g.id));
-    return `<section class="grp grp--${g.id}" aria-label="${g.title}">
+    const cut = activeCat === 'all' && SHORT[g.id] && list.length > SHORT[g.id] ? SHORT[g.id] : 0;
+    return `<section class="grp grp--${g.id}${cut ? ' grp--short' : ''}" aria-label="${g.title}">
       <header class="grp__head rv"><h3>${g.title}</h3><p>${g.sub}</p><span class="grp__n">${list.length} ${list.length === 1 ? 'articolo' : 'articoli'}</span></header>
-      <div class="grp__grid">${list.map(cardHtml).join('')}</div>
+      <div class="grp__grid">${list.map((p, i) => cut && i >= cut ? cardHtml(p).replace('class="card', 'class="card card--extra') : cardHtml(p)).join('')}</div>
+      ${cut ? `<button class="btn btn--ghost grp__more" type="button" data-more aria-expanded="false">Mostra tutti i ${list.length}</button>` : ''}
     </section>`;
   }).join('');
   if (window.revealAll) revealAll();
 }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-more]'); if (!b) return;
+  const s = b.closest('.grp'); s.classList.remove('grp--short'); b.remove();
+  if (window.revealAll) revealAll();
+});
 
 /* ---------- vetrina: i pezzi forti in grande ---------- */
 const VETRINA = [
@@ -156,7 +164,7 @@ function renderVetrina() {
   box.innerHTML = `<div class="vetrina__track">${VETRINA.map((v, i) => {
     const p = byId(v.id);
     return `<article class="vslide${i ? '' : ' on'}">
-      <div class="vslide__pic"><img loading="lazy" decoding="async" src="${v.img}" alt="${esc(p.name)}"${i ? ' loading="lazy"' : ''}></div>
+      <div class="vslide__pic"><img ${i ? 'loading="lazy" ' : ''}decoding="async" src="${v.img}" alt="${esc(p.name)}"></div>
       ${p.tag ? `<span class="card__tag vslide__tag">${p.tag}</span>` : ''}
       <div class="vslide__txt">
         <h3>${esc(p.name)}</h3>

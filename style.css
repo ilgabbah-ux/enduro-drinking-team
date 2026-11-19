@@ -926,3 +926,12 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-event
   .scena--video { background-image: url(img/ai/nebbia-m.jpg); }
   .x4--foto::before { background-image: url(img/ai/4x4-m.jpg); }
 }
+
+/* ===================== v14: pagina più corta su telefono ===================== */
+.grp--short .card--extra { display: none; }
+.grp__more { display: flex; margin: 18px auto 0; }
+@media (max-width: 760px) {
+  .crew.figs { display: flex; grid-template-columns: none; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: var(--gutter); padding: 4px var(--gutter) 14px; margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .crew.figs::-webkit-scrollbar { display: none; }
+  .crew.figs > .fig { flex: 0 0 68%; scroll-snap-align: start; opacity: 1 !important; transform: none !important; }
+}
