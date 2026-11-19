@@ -620,7 +620,7 @@ document.querySelectorAll('.fig__pic[data-foto]').forEach(box => {
 
 /* ---------- spot di Svetlana: un tocco per guardarli con l'audio ---------- */
 (() => {
-  const vids = [...document.querySelectorAll('.spot video')];
+  const vids = [...document.querySelectorAll('.spot__vid video')];
   vids.forEach(v => {
     const box = v.parentElement, btn = box.querySelector('.spot__play');
     const start = () => {
