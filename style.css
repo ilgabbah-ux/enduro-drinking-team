@@ -919,3 +919,10 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-event
 /* ===================== v12: link diretto al prodotto ===================== */
 .sheet__share { display: inline-flex; align-items: center; gap: 8px; margin: 2px 0 14px; padding: 0; border: 0; background: none; font: inherit; font-size: .9rem; font-weight: 600; color: #4a4038; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .sheet__share:hover, .sheet__share:focus-visible { color: #15110d; }
+
+/* ===================== v13: sfondi leggeri su telefono ===================== */
+@media (max-width: 760px) {
+  .scena--shop { background-image: url(img/ai/pozza-m.jpg); }
+  .scena--video { background-image: url(img/ai/nebbia-m.jpg); }
+  .x4--foto::before { background-image: url(img/ai/4x4-m.jpg); }
+}

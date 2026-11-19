@@ -119,7 +119,7 @@ function cardHtml(p, i) {
     <article class="card rv${p.small ? ' card--small' : ''}" style="--d:${(i % 4) * 60}ms">
       <button class="card__hit" type="button" data-open="${p.id}" aria-label="Scegli ${esc(p.name)}, ${eur(p.price)}">
         <div class="card__media">
-          <div class="card__img">${p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy"${p.pos ? ` style="object-position:${p.pos}"` : ''}>` : placeholder(p)}${alt(p) ? `<img class="alt" src="${alt(p)}" alt="" loading="lazy">` : ''}</div>
+          <div class="card__img">${p.img ? `<img loading="lazy" decoding="async" src="${p.img}" alt="${esc(p.name)}" loading="lazy"${p.pos ? ` style="object-position:${p.pos}"` : ''}>` : placeholder(p)}${alt(p) ? `<img class="alt" src="${alt(p)}" alt="" loading="lazy">` : ''}</div>
           ${p.tag ? `<span class="card__tag">${p.tag}</span>` : ''}
           <p class="card__price">${eur(p.price)}</p>
         </div>
@@ -156,7 +156,7 @@ function renderVetrina() {
   box.innerHTML = `<div class="vetrina__track">${VETRINA.map((v, i) => {
     const p = byId(v.id);
     return `<article class="vslide${i ? '' : ' on'}">
-      <div class="vslide__pic"><img src="${v.img}" alt="${esc(p.name)}"${i ? ' loading="lazy"' : ''}></div>
+      <div class="vslide__pic"><img loading="lazy" decoding="async" src="${v.img}" alt="${esc(p.name)}"${i ? ' loading="lazy"' : ''}></div>
       ${p.tag ? `<span class="card__tag vslide__tag">${p.tag}</span>` : ''}
       <div class="vslide__txt">
         <h3>${esc(p.name)}</h3>
@@ -204,7 +204,7 @@ function openProduct(id) {
   const p = current = byId(id);
   const imgs = p.imgs || (p.img ? [p.img] : []);
   $('#pd-media').innerHTML = imgs.length ? `<img id="pd-main" src="${imgs[0]}" alt="${esc(p.name)}">` +
-    (imgs.length > 1 ? `<div class="thumbs">${imgs.map((s, i) => `<button type="button" data-img="${s}" aria-label="Foto ${i + 1}" aria-pressed="${!i}"><img src="${s}" alt=""></button>`).join('')}</div>` : '') : placeholder(p);
+    (imgs.length > 1 ? `<div class="thumbs">${imgs.map((s, i) => `<button type="button" data-img="${s}" aria-label="Foto ${i + 1}" aria-pressed="${!i}"><img loading="lazy" decoding="async" src="${s}" alt=""></button>`).join('')}</div>` : '') : placeholder(p);
   $('#pd-name').textContent = p.name;
   $('#pd-price').textContent = eur(p.price);
   $('#pd-note').textContent = p.note;
@@ -303,7 +303,7 @@ function renderCart() {
     $('#cart-lines').innerHTML = cart.map((l, i) => {
       const p = byId(l.id);
       return `<li class="line">
-        <div class="line__img"><img src="${imgFor(p, l.color) || 'img/mascotte.png'}" alt=""></div>
+        <div class="line__img"><img loading="lazy" decoding="async" src="${imgFor(p, l.color) || 'img/mascotte.png'}" alt=""></div>
         <div class="line__txt"><strong>${esc(p.name)}</strong><span>${esc(lineDesc(l))}</span>
           <div class="qty"><button type="button" data-q="${i}" data-d="-1" aria-label="Togli uno">−</button><output>${l.qty}</output><button type="button" data-q="${i}" data-d="1" aria-label="Aggiungi uno">+</button></div>
         </div>
