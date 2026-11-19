@@ -966,3 +966,9 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-event
 .ragazze { padding: 44px 0 48px; }
 .ragazze .grazie { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
 @media (min-width: 760px) { .ragazze { padding: 84px 0 88px; } .ragazze .grazie { grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 72px; max-width: 1120px; margin-inline: auto; } }
+
+/* v17: apertura con le ragazze immagine. Niente schizzi né targa sopra i volti */
+.hero__bg { object-position: 100% 10%; }
+@media (max-width: 760px) { .hero__bg { object-position: 50% 0%; } }
+.hero__fx { display: none; }
+@media (max-width: 1199px) { .hero .plate { display: none; } }
