@@ -131,7 +131,7 @@ function cardHtml(p, i) {
       </button>
     </article>`;
 }
-const SHORT = { small: 6 };   // nella vista "Tutto" questi gruppi mostrano solo i primi, il resto dietro un pulsante
+const SHORT = { small: 6, wear: matchMedia('(max-width: 759px)').matches ? 6 : 0 };   // nella vista "Tutto" questi gruppi mostrano solo i primi, il resto dietro un pulsante
 function renderGrid() {
   const groups = GROUPS.filter(g => activeCat === 'all' || g.id === activeCat);
   $('#grid').innerHTML = groups.map(g => {
@@ -618,21 +618,46 @@ document.querySelectorAll('.fig__pic[data-foto]').forEach(box => {
   }
 })();
 
-/* ---------- spot di Svetlana: un tocco per guardarli con l'audio ---------- */
+/* ---------- video verticali: partono da soli senza audio quando entrano in vista, un tocco per sentirli ---------- */
 (() => {
   const vids = [...document.querySelectorAll('.spot__vid video')];
+  const lite = (navigator.connection && navigator.connection.saveData) || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let loud = null;
+  const muto = (v, box) => {
+    if (lite || loud) return;
+    v.muted = true; v.loop = true; v.controls = false;
+    const p = v.play(); if (p && p.then) p.then(() => box.classList.add('auto')).catch(() => {});
+  };
+  const zitto = (v, box) => { loud = null; v.controls = false; box.classList.remove('on'); };
   vids.forEach(v => {
     const box = v.parentElement, btn = box.querySelector('.spot__play');
-    const start = () => {
-      vids.forEach(o => { if (o !== v) o.pause(); });
-      v.controls = true;
+    btn.addEventListener('click', () => {
+      vids.forEach(o => { if (o !== v) { o.pause(); o.parentElement.classList.remove('auto', 'on'); o.controls = false; } });
+      loud = v; v.muted = false; v.loop = false; v.currentTime = 0; v.controls = true;
+      box.classList.remove('auto'); box.classList.add('on');
       const p = v.play(); if (p && p.catch) p.catch(() => {});
-    };
-    btn.addEventListener('click', start);
-    v.addEventListener('play', () => box.classList.add('on'));
-    v.addEventListener('pause', () => { if (v.ended || v.currentTime === 0) box.classList.remove('on'); });
-    v.addEventListener('ended', () => { box.classList.remove('on'); v.controls = false; v.load(); });
+    });
+    v.addEventListener('ended', () => { if (loud === v) { zitto(v, box); if (box.dataset.vis) muto(v, box); } });
   });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      const v = e.target, box = v.parentElement;
+      if (e.isIntersecting) { box.dataset.vis = '1'; if (loud !== v) muto(v, box); }
+      else { delete box.dataset.vis; v.pause(); if (loud === v) zitto(v, box); box.classList.remove('auto'); }
+    }), { threshold: .6 });
+    vids.forEach(v => io.observe(v));
+  }
+})();
+
+/* ---------- barra "Vai allo shop" su telefono: compare dopo l'apertura, sparisce dentro lo shop e in fondo ---------- */
+(() => {
+  const fab = document.getElementById('gofab'); if (!fab || !('IntersectionObserver' in window)) return;
+  const viste = new Set();
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => e.isIntersecting ? viste.add(e.target) : viste.delete(e.target));
+    fab.hidden = viste.size > 0;
+  }, { threshold: 0 });
+  ['.hero', '#shop', '#contatti'].forEach(q => { const el = document.querySelector(q); if (el) io.observe(el); });
 })();
 
 /* ---------- galleria: tocca una foto per vederla grande ---------- */

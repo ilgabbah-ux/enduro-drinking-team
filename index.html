@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Bowlby+One&family=Rubik+Dirt&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 
@@ -41,8 +41,9 @@
   </a>
   <nav class="nav" aria-label="Sezioni">
     <a href="#ragazze">Le ragazze</a>
-    <a href="#storia">La storia</a>
     <a href="#shop">Shop</a>
+    <a href="#gioca">Gioca</a>
+    <a href="#storia">La storia</a>
     <a href="#video">Video</a>
     <a href="#team">Il team</a>
     <a href="#contatti">Contatti</a>
@@ -98,7 +99,7 @@
         <a class="btn btn--ghost" href="#video">Guarda i video</a>
       </div>
     </div>
-    <a class="scroll-cue" href="#storia" aria-label="Scorri giù"><span></span></a>
+    <a class="scroll-cue" href="#ragazze" aria-label="Scorri giù"><span></span></a>
   </section>
 
   <div class="tapes" aria-hidden="true">
@@ -129,47 +130,13 @@
     </div>
   </section>
 
-  <section class="storia st2" id="storia" aria-labelledby="storia-title">
-    <div class="st2__hero">
-      <img class="st2__bg" src="img/g/gruppo.jpg" alt="Il gruppo EDT brinda in cima al passo sopra il mare di nuvole" loading="lazy" width="1600" height="893">
-      <div class="wrap st2__in">
-        <p class="kicker">01 · La storia</p>
-        <h2 id="storia-title" class="rv">Nati per uscire dai sentieri battuti</h2>
-        <p class="st2__lead rv">Dal 2017 ogni uscita comincia con «tranquilli, è un giro easy» e finisce con il fango fino al casco.</p>
-        <dl class="conti">
-          <div class="rv"><dt>Anno zero</dt><dd data-count="2017">2017</dd></div>
-          <div class="rv"><dt>Tagli di Angelo</dt><dd>∞</dd></div>
-          <div class="rv"><dt>Giri davvero easy</dt><dd>0</dd></div>
-        </dl>
-      </div>
-    </div>
-    <div class="tappe">
-      <ol class="tappe__run" aria-label="Le tappe dell'EDT">
-        <li class="tappa rv" style="--img:url(img/t/tappa-2017.jpg)"><time>2017</time><strong>Nasce l'EDT</strong><span>Amici, qualche enduro e una pessima idea.</span></li>
-        <li class="tappa rv" style="--img:url(img/v/f/NI4SmKuwjso_2.jpg)"><time>Feb 2026</time><strong>Marocco Adventure</strong><span>Nove cadute nel deserto. È diventato una serie.</span></li>
-        <li class="tappa rv" style="--img:url(img/v/f/yCn65wyWnFw_1.jpg)"><time>Giu 2026</time><strong>Neve al Sommeiller</strong><span>Notturna a giugno, e lassù c'era la neve.</span></li>
-        <li class="tappa rv" style="--img:url(img/v/f/xSemIPb7NfA_1.jpg)"><time>2026</time><strong>Motovigna</strong><span>Altro giro easy, altra storia da raccontare.</span></li>
-        <li class="tappa rv" style="--img:url(img/t/tappa-completo.jpg)"><time>Oggi</time><strong>Lo shop ufficiale</strong><span>Adesso l'ignoranza si può anche indossare.</span></li>
-      </ol>
-    </div>
-    <div class="wrap">
-      <h3 class="regole__title">Le regole non scritte</h3>
-      <ol class="regole">
-        <li class="rv"><strong>Non si torna indietro.</strong> Al massimo si cerca un taglio peggiore.</li>
-        <li class="rv"><strong>Prima si sfotte, poi si aiuta.</strong> L'ordine è fondamentale.</li>
-        <li class="rv"><strong>Se passa il Gabbah, passano tutti.</strong> O almeno questa è la teoria.</li>
-        <li class="rv"><strong>Mai lasciare il telefono incustodito.</strong> L'EDT non perdona.</li>
-      </ol>
-    </div>
-  </section>
-
   <div class="shout" aria-hidden="true"><p data-shout>Tranquilli, è un giro easy · Tranquilli, è un giro easy ·</p></div>
   <div class="drip drip--notte" aria-hidden="true"></div>
   <section class="shop" id="shop" aria-labelledby="shop-title">
     <div class="scena scena--shop" aria-hidden="true"></div>
     <div class="wrap">
       <div class="shop__head">
-        <p class="kicker">02 · Lo shop</p>
+        <p class="kicker">01 · Lo shop</p>
         <h2 id="shop-title" class="rv">Indossa l'ignoranza</h2>
         <p>Magliette, felpe, completi da gara e adesivi ufficiali dell'EDT. Scegli, paghi con PayPal, spediamo noi.</p>
       </div>
@@ -218,11 +185,80 @@
     </div>
   </section>
 
+  <section class="gioca" id="gioca" aria-labelledby="gioca-title">
+    <div class="wrap">
+      <p class="kicker">02 · Gioca</p>
+      <h2 id="gioca-title" class="rv">Fatti la tabella. <span>Poi mandala agli amici.</span></h2>
+      <div class="gioca__grid">
+        <article class="tab rv" aria-labelledby="tab-title">
+          <canvas class="tab__cv" id="tab-cv" width="1080" height="1350" role="img" aria-label="Anteprima della tua tabella EDT"></canvas>
+          <div class="tab__form">
+            <h3 id="tab-title">La tabella col tuo nome</h3>
+            <p>Scrivi nome e numero: esce la tua tabella EDT da mettere nelle storie o da mandare nel gruppo.</p>
+            <div class="tab__row">
+              <label class="field"><span>Nome</span><input id="tab-nome" maxlength="12" placeholder="Es. GABBAH" autocomplete="off" autocapitalize="characters"></label>
+              <label class="field field--n"><span>Numero</span><input id="tab-num" inputmode="numeric" maxlength="3" placeholder="17" autocomplete="off"></label>
+            </div>
+            <div class="tab__btns">
+              <button class="btn btn--beer" type="button" id="tab-share">Condividi</button>
+              <button class="btn btn--ghost" type="button" id="tab-dl">Scarica</button>
+            </div>
+            <button class="tab__link" type="button" id="tab-maglia">Mettili sulla maglia da gara, 30 €</button>
+          </div>
+        </article>
+        <article class="quiz rv" id="quiz" aria-labelledby="quiz-title">
+          <h3 id="quiz-title">Che endurista sei?</h3>
+          <div id="quiz-body" aria-live="polite"><p>Cinque domande, zero diplomazia. Alla fine sai chi sei nel gruppo.</p><button class="btn btn--beer" type="button" data-quiz="start">Scoprilo</button></div>
+        </article>
+        <a class="giro rv" href="https://ilgabbah-ux.github.io/edt-giro-easy/" target="_blank" rel="noopener">
+          <span class="giro__k">Il gioco dell'EDT</span>
+          <strong>Tranquilli, è un Giro Easy!</strong>
+          <span class="giro__p">Si guida inclinando il telefono. Batti il tempo del Gabbah, se ci riesci.</span>
+          <span class="btn btn--beer">Gioca adesso</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="storia st2" id="storia" aria-labelledby="storia-title">
+    <div class="st2__hero">
+      <img class="st2__bg" src="img/g/gruppo.jpg" alt="Il gruppo EDT brinda in cima al passo sopra il mare di nuvole" loading="lazy" width="1600" height="893">
+      <div class="wrap st2__in">
+        <p class="kicker">03 · La storia</p>
+        <h2 id="storia-title" class="rv">Nati per uscire dai sentieri battuti</h2>
+        <p class="st2__lead rv">Dal 2017 ogni uscita comincia con «tranquilli, è un giro easy» e finisce con il fango fino al casco.</p>
+        <dl class="conti">
+          <div class="rv"><dt>Anno zero</dt><dd data-count="2017">2017</dd></div>
+          <div class="rv"><dt>Tagli di Angelo</dt><dd>∞</dd></div>
+          <div class="rv"><dt>Giri davvero easy</dt><dd>0</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="tappe">
+      <ol class="tappe__run" aria-label="Le tappe dell'EDT">
+        <li class="tappa rv" style="--img:url(img/t/tappa-2017.jpg)"><time>2017</time><strong>Nasce l'EDT</strong><span>Amici, qualche enduro e una pessima idea.</span></li>
+        <li class="tappa rv" style="--img:url(img/v/f/NI4SmKuwjso_2.jpg)"><time>Feb 2026</time><strong>Marocco Adventure</strong><span>Nove cadute nel deserto. È diventato una serie.</span></li>
+        <li class="tappa rv" style="--img:url(img/v/f/yCn65wyWnFw_1.jpg)"><time>Giu 2026</time><strong>Neve al Sommeiller</strong><span>Notturna a giugno, e lassù c'era la neve.</span></li>
+        <li class="tappa rv" style="--img:url(img/v/f/xSemIPb7NfA_1.jpg)"><time>2026</time><strong>Motovigna</strong><span>Altro giro easy, altra storia da raccontare.</span></li>
+        <li class="tappa rv" style="--img:url(img/t/tappa-completo.jpg)"><time>Oggi</time><strong>Lo shop ufficiale</strong><span>Adesso l'ignoranza si può anche indossare.</span></li>
+      </ol>
+    </div>
+    <div class="wrap">
+      <h3 class="regole__title">Le regole non scritte</h3>
+      <ol class="regole">
+        <li class="rv"><strong>Non si torna indietro.</strong> Al massimo si cerca un taglio peggiore.</li>
+        <li class="rv"><strong>Prima si sfotte, poi si aiuta.</strong> L'ordine è fondamentale.</li>
+        <li class="rv"><strong>Se passa il Gabbah, passano tutti.</strong> O almeno questa è la teoria.</li>
+        <li class="rv"><strong>Mai lasciare il telefono incustodito.</strong> L'EDT non perdona.</li>
+      </ol>
+    </div>
+  </section>
+
   <div class="shout shout--r" aria-hidden="true"><p data-shout>Prima si sfotte · poi si aiuta · sempre ·</p></div>
   <section class="video" id="video" aria-labelledby="video-title">
     <div class="scena scena--video" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="kicker">03 · Video</p>
+      <p class="kicker">04 · Video</p>
       <h2 id="video-title" class="rv">Ultime uscite</h2>
       <p class="lead">Gli ultimi video dal canale Piemonte Off-Road Enduro: 6.700 iscritti e nessuno che sia mai tornato pulito.</p>
       <div class="video__grid">
@@ -247,7 +283,7 @@
   <div class="drip drip--notte" aria-hidden="true"></div>
   <section class="team" id="team" aria-labelledby="team-title">
     <div class="wrap">
-      <p class="kicker">04 · Il team</p>
+      <p class="kicker">05 · Il team</p>
       <h2 id="team-title" class="rv">Brutte idee, grande squadra</h2>
       <p class="lead">Non è importante chi arriva prima. L'importante è che nessuno torni pulito.</p>
       <ul class="crew figs">
@@ -304,26 +340,19 @@
           <div class="fig__body"><strong>Maggie e Gabbah</strong><em>In due sulla stessa moto</em><p>Lei dietro, lui davanti. Chi comanda non è chiaro.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:60%"></i></li><li><span>Birra</span><i style="--v:40%"></i></li><li><span>Tagli</span><i style="--v:55%"></i></li></ul></div>
         </li>
         <li class="fig rv">
-          <div class="fig__pic has"><img class="fig__img" src="img/team/svetlana.jpg" alt="Svetlana con la maglia da gara EDT" loading="lazy" width="720" height="900"><span class="fig__n">14</span></div>
-          <div class="fig__body"><strong>Svetlana</strong><em>Modella ufficiale</em><p>Meno bambola di come la ricordavamo.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:40%"></i></li><li><span>Birra</span><i style="--v:80%"></i></li><li><span>Tagli</span><i style="--v:30%"></i></li></ul></div>
+          <div class="fig__pic has"><img class="fig__img" src="img/team/svetlana.jpg" alt="Svetlana, la bionda delle Tre Grazie, con il top bianco EDT" loading="lazy" width="720" height="900"><span class="fig__n">14</span></div>
+          <div class="fig__body"><strong>Svetlana</strong><em>Ragazza immagine</em><p>Meno bambola di come la ricordavamo.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:40%"></i></li><li><span>Birra</span><i style="--v:80%"></i></li><li><span>Tagli</span><i style="--v:30%"></i></li></ul></div>
         </li>
-        <li class="fig rv fig--attesa">
-          <div class="fig__pic"><img src="img/mascotte.png" alt="" class="fig__ph" width="400" height="312"><span class="fig__soon">Foto in arrivo</span><span class="fig__n">15</span></div>
-          <div class="fig__body"><strong>Claudio</strong><em>Veterano</em><p>Fango, salite e spirito EDT: sempre presente.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:95%"></i></li><li><span>Birra</span><i style="--v:70%"></i></li><li><span>Tagli</span><i style="--v:40%"></i></li></ul></div>
+        <li class="fig rv">
+          <div class="fig__pic has"><img class="fig__img" src="img/team/katiusha.jpg" alt="Katiusha, la bruna delle Tre Grazie, con il gilet di pelle" loading="lazy" width="720" height="900"><span class="fig__n">15</span></div>
+          <div class="fig__body"><strong>Katiusha</strong><em>Ragazza immagine</em><p>La bruna. La taglia te la fa scegliere lei.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:45%"></i></li><li><span>Birra</span><i style="--v:75%"></i></li><li><span>Tagli</span><i style="--v:60%"></i></li></ul></div>
         </li>
-        <li class="fig rv fig--attesa">
-          <div class="fig__pic"><img src="img/mascotte.png" alt="" class="fig__ph" width="400" height="312"><span class="fig__soon">Foto in arrivo</span><span class="fig__n">16</span></div>
-          <div class="fig__body"><strong>Max</strong><em>Logistica creativa</em><p>Adora le uscite con carrelli e furgoni.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:60%"></i></li><li><span>Birra</span><i style="--v:80%"></i></li><li><span>Tagli</span><i style="--v:50%"></i></li></ul></div>
-        </li>
-        <li class="fig rv fig--attesa">
-          <div class="fig__pic"><img src="img/mascotte.png" alt="" class="fig__ph" width="400" height="312"><span class="fig__soon">Foto in arrivo</span><span class="fig__n">17</span></div>
-          <div class="fig__body"><strong>Eddy</strong><em>Complice ufficiale</em><p>In coppia con Angelo diventa un'arma micidiale.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:75%"></i></li><li><span>Birra</span><i style="--v:85%"></i></li><li><span>Tagli</span><i style="--v:90%"></i></li></ul></div>
-        </li>
-        <li class="fig rv fig--attesa">
-          <div class="fig__pic"><img src="img/mascotte.png" alt="" class="fig__ph" width="400" height="312"><span class="fig__soon">Foto in arrivo</span><span class="fig__n">18</span></div>
-          <div class="fig__body"><strong>Ciprian</strong><em>La crew</em><p>Trasforma ogni giro easy in una storia.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:85%"></i></li><li><span>Birra</span><i style="--v:95%"></i></li><li><span>Tagli</span><i style="--v:70%"></i></li></ul></div>
+        <li class="fig rv">
+          <div class="fig__pic has"><img class="fig__img" src="img/team/irina.jpg" alt="Irina, la rossa delle Tre Grazie, con la tuta di pelle a righe gialle e rosse" loading="lazy" width="720" height="900"><span class="fig__n">16</span></div>
+          <div class="fig__body"><strong>Irina</strong><em>Ragazza immagine</em><p>La rossa. Poi vuole sapere chi ti ha convinto.</p><ul class="fig__stats"><li><span>Fango</span><i style="--v:50%"></i></li><li><span>Birra</span><i style="--v:70%"></i></li><li><span>Tagli</span><i style="--v:45%"></i></li></ul></div>
         </li>
       </ul>
+      <p class="team__altri rv">In squadra anche <b>Claudio</b>, <b>Max</b>, <b>Eddy</b> e <b>Ciprian</b>: la foto arriva quando si fanno trovare puliti.</p>
       <aside class="x4 x4--foto rv">
         <img src="img/logo-4x4.png" alt="Logo 4x4 Off-Road" width="160" height="117" loading="lazy">
         <div>
@@ -338,21 +367,22 @@
   <div class="drip drip--fango" aria-hidden="true"></div>
   <div class="shout" aria-hidden="true"><p data-shout>Nessuno torna pulito · Nessuno torna pulito ·</p></div>
   <section class="galleria" aria-labelledby="gal-title">
-    <div class="wrap"><p class="kicker">05 · Galleria</p><h2 id="gal-title" class="rv">Fango e gloria</h2></div>
+    <div class="wrap"><p class="kicker">06 · Galleria</p><h2 id="gal-title" class="rv">Fango e gloria</h2></div>
     <div class="mosaico">
       <button class="mos mos--w rv" type="button" data-zoom="img/ai/pozza.jpg" aria-label="Ingrandisci: Una enduro entra in una pozza di fango controluce tra i larici"><img src="img/ai/pozza.jpg" alt="Una enduro entra in una pozza di fango controluce tra i larici" loading="lazy" width="1600" height="904"></button>
-      <button class="mos rv" type="button" data-zoom="img/g/n1.jpg" aria-label="Ingrandisci: Svetlana ride al tramonto con la manica lunga EDT"><img src="img/g/n1.jpg" alt="Svetlana ride al tramonto con la manica lunga EDT" loading="lazy" width="896" height="1200"></button>
+      <button class="mos rv" type="button" data-zoom="img/g/g10.jpg" aria-label="Ingrandisci: Una enduro piantata in un canale di fango nel bosco"><img src="img/g/g10.jpg" alt="Una enduro piantata in un canale di fango nel bosco" loading="lazy" width="900" height="1200"></button>
       <button class="mos rv" type="button" data-zoom="img/g/n4.jpg" aria-label="Ingrandisci: Brindisi al rifugio dopo il giro"><img src="img/g/n4.jpg" alt="Brindisi al rifugio dopo il giro" loading="lazy" width="896" height="1200"></button>
-      <button class="mos rv" type="button" data-zoom="img/g/n3.jpg" aria-label="Ingrandisci: Rider EDT seduto sulla moto con la t-shirt rossa 2026"><img src="img/g/n3.jpg" alt="Rider EDT seduto sulla moto con la t-shirt rossa 2026" loading="lazy" width="896" height="1200"></button>
-      <button class="mos rv" type="button" data-zoom="img/g/n5.jpg" aria-label="Ingrandisci: Svetlana col berretto EDT nella nebbia del mattino"><img src="img/g/n5.jpg" alt="Svetlana col berretto EDT nella nebbia del mattino" loading="lazy" width="896" height="1200"></button>
+      <button class="mos rv" type="button" data-zoom="img/g/g7.jpg" aria-label="Ingrandisci: Brindisi con le birre fuori dal bar a fine giro"><img src="img/g/g7.jpg" alt="Brindisi con le birre fuori dal bar a fine giro" loading="lazy" width="1200" height="900"></button>
+      <button class="mos rv" type="button" data-zoom="img/g/g9.jpg" aria-label="Ingrandisci: Passaggio a spinta tra le rocce di un torrente"><img src="img/g/g9.jpg" alt="Passaggio a spinta tra le rocce di un torrente" loading="lazy" width="1200" height="675"></button>
       <button class="mos mos--w rv" type="button" data-zoom="img/ai/nebbia.jpg" aria-label="Ingrandisci: Tre piloti salgono una mulattiera nella nebbia con i fari accesi"><img src="img/ai/nebbia.jpg" alt="Tre piloti salgono una mulattiera nella nebbia con i fari accesi" loading="lazy" width="1600" height="904"></button>
       <button class="mos mos--w rv" type="button" data-zoom="img/ai/4x4.jpg" aria-label="Ingrandisci: Un fuoristrada nero guada il fango al tramonto"><img src="img/ai/4x4.jpg" alt="Un fuoristrada nero guada il fango al tramonto" loading="lazy" width="1600" height="904"></button>
-      <button class="mos rv" type="button" data-zoom="img/g/n6.jpg" aria-label="Ingrandisci: Svetlana con la felpa EDT sulla moto"><img src="img/g/n6.jpg" alt="Svetlana con la felpa EDT sulla moto" loading="lazy" width="896" height="1200"></button>
+      <button class="mos rv" type="button" data-zoom="img/g/g12.jpg" aria-label="Ingrandisci: Tutto il gruppo a tavola in rifugio"><img src="img/g/g12.jpg" alt="Tutto il gruppo a tavola in rifugio" loading="lazy" width="1200" height="675"></button>
       <button class="mos rv" type="button" data-zoom="img/g/n7.jpg" aria-label="Ingrandisci: Adesivi EDT sul serbatoio e sul casco"><img src="img/g/n7.jpg" alt="Adesivi EDT sul serbatoio e sul casco" loading="lazy" width="896" height="1200"></button>
       <button class="mos mos--p rv" type="button" data-zoom="img/ai/fangoso.jpg" aria-label="Ingrandisci: Un pilota coperto di fango accanto alla sua moto, di notte"><img src="img/ai/fangoso.jpg" alt="Un pilota coperto di fango accanto alla sua moto, di notte" loading="lazy" width="1600" height="904"></button>
     </div>
   </section>
 </main>
+<a class="gofab" id="gofab" href="#shop" hidden>Vai allo shop</a>
 
 <footer class="foot" id="contatti">
   <img class="foot__pic" src="img/ai/fangoso.jpg" alt="" loading="lazy" width="2000" height="1131">
@@ -440,7 +470,8 @@
 </dialog>
 
 <div class="toast" id="toast" role="status" hidden></div>
-<script src="app.js?v=19"></script>
+<script src="app.js?v=20"></script>
+<script src="gioca.js?v=20" defer></script>
 <script data-goatcounter="https://endurodrinkingteam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -984,3 +984,73 @@ body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-event
 @media (max-width: 899px) { .hero .plate--gara { display: block; width: 86px; height: auto; top: 96px; } }
 @media (min-width: 900px) and (max-width: 1199px) { .hero .plate--gara { display: none; } }
 @media (min-width: 1200px) { .hero .plate--gara { width: 172px; height: auto; top: 128px; } }
+
+/* ===================== v20: sito più vivo ===================== */
+img { height: auto; }
+/* video che partono da soli */
+.spot__vid.auto .spot__play { background: none; }
+.spot__vid.auto .spot__play::before { content: 'Tocca per l\'audio'; left: 10px; top: auto; bottom: 10px; width: auto; height: auto; margin: 0; padding: .5em .9em .5em 2.2em; border-radius: 999px; background: rgba(15,13,11,.78) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f7b500'%3E%3Cpath d='M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z'/%3E%3C/svg%3E") .7em 50%/1.2em no-repeat; box-shadow: none; color: var(--carta); font: 700 .78rem/1 var(--body); animation: none; }
+.spot__vid.auto .spot__play::after { display: none; }
+/* barra shop su telefono */
+.gofab { position: fixed; z-index: 40; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; display: inline-flex; align-items: center; min-height: 50px; padding: 0 1.6em; border-radius: 999px; background: var(--birra); color: var(--ink); font: 800 1rem var(--body); text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,.6), 0 0 0 3px rgba(15,13,11,.5); animation: up .35s ease-out both; }
+.gofab[hidden] { display: none; }
+@media (min-width: 760px) { .gofab { display: none; } }
+/* team */
+.team__altri { margin: 22px 0 0; color: var(--nebbia); font-size: 1rem; }
+.team__altri b { color: var(--carta); }
+/* video in evidenza: la miniatura si vede intera */
+@media (min-width: 900px) {
+  .vfeat { aspect-ratio: auto; min-height: 0; background: var(--terra); border: 1px solid var(--linea); display: flex; flex-direction: column; }
+  .vfeat > img { aspect-ratio: 16/9; height: auto; flex: none; }
+  .vfeat::after { display: none; }
+  .vfeat .gp { inset: 0 0 auto; aspect-ratio: 16/9; }
+  .vfeat__play { top: 0; margin-top: calc(28.125% - 38px); }
+  .vfeat__txt { position: static; display: block; padding: 20px 24px 24px; font-size: clamp(1.5rem, 2.2vw, 2.2rem); margin-block: auto; }
+}
+/* sezione gioca */
+.gioca { position: relative; padding: 56px 0 60px; background: var(--grain), linear-gradient(180deg, #191512, #2a1a0d 60%, #191512); }
+.gioca h2 span { display: block; color: var(--birra); font-size: .62em; line-height: 1.05; margin-top: .25em; }
+.gioca__grid { display: grid; gap: 16px; margin-top: 24px; }
+.tab, .quiz, .giro { border-radius: 20px; border: 1px solid var(--linea); background: rgba(15,13,11,.55); overflow: hidden; }
+.tab { display: grid; }
+.tab__cv { display: block; width: 100%; height: auto; aspect-ratio: 4/5; background: #0f0d0b; }
+.tab__form, .quiz { padding: 18px 16px 20px; }
+.tab h3, .quiz h3 { margin: 0 0 8px; font-size: 1.5rem; line-height: 1.05; }
+.tab p, .quiz p { margin: 0 0 14px; color: var(--nebbia); }
+.tab__row { display: grid; grid-template-columns: minmax(0, 1fr) 96px; gap: 10px; }
+.gioca .field { display: grid; gap: 6px; font: 700 .8rem var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--nebbia); }
+.gioca .field input { width: 100%; min-height: 50px; padding: 0 14px; border-radius: 12px; border: 1.5px solid rgba(244,236,223,.28); background: rgba(244,236,223,.07); color: var(--carta); font: 400 1.25rem var(--display); text-transform: uppercase; }
+.gioca .field input:focus { outline: 2px solid var(--birra); outline-offset: 1px; }
+.gioca .field input::placeholder { color: rgba(244,236,223,.35); }
+.tab__btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.tab__btns .btn { flex: 1 1 auto; min-height: 50px; padding: 0 1.2em; }
+.gioca .btn--ghost { border-color: rgba(244,236,223,.45); color: var(--carta); background: none; }
+.tab__link { margin-top: 14px; padding: 0; border: 0; background: none; color: var(--birra); font: 700 .98rem var(--body); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.quiz { display: grid; align-content: start; background: rgba(15,13,11,.55) radial-gradient(circle at 90% 0%, rgba(225,20,12,.28), transparent 60%); }
+.quiz__n { margin: 0 0 6px !important; font: 800 .75rem var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--birra) !important; }
+.quiz__q { font: 400 1.35rem/1.15 var(--display); color: var(--carta) !important; }
+.quiz__a { display: grid; gap: 8px; }
+.quiz__a button { min-height: 52px; padding: 10px 14px; border-radius: 12px; border: 1.5px solid rgba(244,236,223,.25); background: rgba(244,236,223,.06); color: var(--carta); font: 600 1rem/1.25 var(--body); text-align: left; cursor: pointer; transition: background .15s, border-color .15s, transform .15s; }
+.quiz__a button:hover { background: rgba(247,181,0,.16); border-color: var(--birra); transform: translateX(4px); }
+.quiz__r { margin: 0 !important; font: 400 clamp(2rem, 9vw, 3.2rem)/1 var(--display); color: var(--birra) !important; }
+.quiz__chi { margin: 6px 0 12px !important; font: 400 1.05rem var(--display); color: var(--rosso) !important; }
+.giro { display: grid; gap: 8px; justify-items: start; padding: 22px 16px; text-decoration: none; color: var(--carta); background: linear-gradient(110deg, rgba(15,13,11,.92) 35%, rgba(15,13,11,.35)), url(img/ai/nebbia-m.jpg) center/cover; }
+.giro__k { font: 800 .75rem var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--birra); }
+.giro strong { font: 400 clamp(1.7rem, 7vw, 2.8rem)/1 var(--display); }
+.giro__p { color: var(--nebbia); max-width: 44ch; margin-bottom: 8px; }
+@media (min-width: 900px) {
+  .gioca { padding: 88px 0 96px; }
+  .gioca__grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; margin-top: 36px; }
+  .tab { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); align-items: center; }
+  .tab__form, .quiz { padding: 28px; }
+  .tab h3, .quiz h3 { font-size: 2rem; }
+  .giro { grid-column: 1 / -1; padding: 34px 32px; background-image: linear-gradient(110deg, rgba(15,13,11,.92) 35%, rgba(15,13,11,.25)), url(img/ai/nebbia.jpg); }
+}
+/* v20: pagina più corta su telefono */
+@media (max-width: 759px) {
+  .mosaico .mos:nth-child(n+7) { display: none; }
+  .patti { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
+  .patti dt { font-size: .95rem; }
+  .patti dd { font-size: .8rem; line-height: 1.35; }
+  .tab__cv { width: 68%; margin: 14px auto 0; border-radius: 12px; }
+}
