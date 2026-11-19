@@ -50,7 +50,8 @@ const PRODUCTS = [
   { id: 'grembiule', cat: 'wear', name: 'Grembiule Serial Griller', note: 'Taglia unica, anche per chi brucia tutto.', price: 20, img: 'img/s/grembiule.jpg', imgs: ['img/s/grembiule.jpg', 'img/p/grembiule-serial-griller.jpg'] },
   { id: 'berretto-edt', cat: 'wear', name: 'Berretto EDT', note: 'Berretto in maglia con la patch del cinghiale 2026.', price: 20, img: 'img/s/berretto.jpg' },
 
-  { id: 'fanqlo-trial-team', guide: 'tee', cat: '4x4', name: 'FAN Q LO Trial Team', note: 'La Q è una gomma tassellata con dentro il logo Trial Team 4x4. Si capisce al volo.', price: 18, img: 'img/x/fanqlo-tee.jpg', imgs: ['img/x/fanqlo-tee.jpg', 'img/x/fanqlo-grafica.jpg'], sizes: true, colors: ['Nera'], tag: 'Novità' },
+  { id: 'fanqlo-trial-team', guide: 'tee', cat: '4x4', name: 'FAN Q LO Trial Team', note: 'La Q è una gomma tassellata con dentro la Jeep del Trial Team 4x4. Si capisce al volo.', price: 18, img: 'img/x/fanqlo-tee.jpg', imgs: ['img/x/fanqlo-tee.jpg', 'img/x/fanqlo-grafica.jpg'], sizes: true, colors: ['Nera'], tag: 'Novità' },
+  { id: 'fanqlo-4x4', guide: 'tee', cat: '4x4', name: 'FAN Q LO 4x4 Off-Road', note: 'Stessa Q a gomma tassellata, ma dentro c’è il cinghiale vichingo del 4x4 Off-Road. Con la birra, ovviamente.', price: 18, img: 'img/x/fanqlo4x4-tee.jpg', imgs: ['img/x/fanqlo4x4-tee.jpg', 'img/x/fanqlo4x4-grafica.jpg'], sizes: true, colors: ['Nera'], tag: 'Novità' },
   { id: 'cappello-4x4', cat: '4x4', name: 'Cappello 4x4 in lana', note: 'Con la patch 4x4 Off Road.', price: 12, img: 'img/s/4x4.jpg' },
   { id: 'cintura-4x4', cat: '4x4', name: 'Cintura 4x4 in cuoio', note: 'Cuoio nero con cuciture rosse, grafica 4x4 Off Road e battistrada. Personalizzabile col tuo nome.', price: 70, img: 'img/s/cintura.jpg', pos: '50% 62%', imgs: ['img/s/cintura.jpg', 'img/p/cintura-4x4-cuoio.jpg'], nome: true },
 
