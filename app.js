@@ -109,9 +109,9 @@ function placeholder(p) {
 }
 const alt = p => p.colorImgs ? Object.values(p.colorImgs).find(s => s !== p.img) : (p.imgs && p.imgs[1]);
 const GROUPS = [
-  { id: 'gara', title: 'Da gara', sub: 'Completo, maglia e pantalone con il tuo nome e il tuo numero.' },
-  { id: 'wear', title: 'Da indossare', sub: 'T-shirt, felpe e berretti per quando scendi dalla moto.' },
-  { id: '4x4', title: '4x4', sub: 'Per chi gira su quattro ruote.' },
+  { id: 'gara', title: 'Da gara', sub: 'La linea di Katiusha. Completo, maglia e pantalone con il tuo nome e il tuo numero.' },
+  { id: 'wear', title: 'Da indossare', sub: 'La linea di Svetlana. T-shirt, felpe e berretti per quando scendi dalla moto.' },
+  { id: '4x4', title: '4x4', sub: 'La linea di Irina. Per chi gira su quattro ruote.' },
   { id: 'small', title: 'Adesivi e piccoli', sub: 'Da 1 €. Arrivano in busta con 2 € di spedizione.' },
 ];
 function cardHtml(p, i) {
