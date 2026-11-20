@@ -7,7 +7,7 @@ const SITE_URL = 'https://endurodrinkingteam.com/';
 const ORDER_EMAIL = 'ordini@endurodrinkingteam.com';
 const SHIP_SMALL = 2;   // solo adesivi, spille, calamite, patch: in busta
 const SHIP_FULL = 7;    // appena c'è un capo o un oggetto grande
-const SW = { Bianca: '#f5f5f2', Nera: '#151515', Rossa: '#d0201a', Blu: '#1d3f8f', Arancio: '#f07d1a', Grigia: '#8a8a88' };
+const SW = { Bianca: '#f5f5f2', Nera: '#151515', Rossa: '#d0201a', Blu: '#1d3f8f', Arancio: '#f07d1a', Grigia: '#8a8a88', Nero: '#151515', 'Grigio melange': '#6f6d6a' };
 const GUIDE = {
   tee: { def: 'L', head: ['Taglia', 'Lunghezza', 'Larghezza'], rows: [['S', 70, 50], ['M', 72, 53], ['L', 74, 56], ['XL', 76, 59], ['XXL', 78, 62], ['3XL', 80, 65], ['4XL', 82, 68], ['5XL', 84, 71]], note: 'Misure della maglia stesa, in cm. Confrontale con una t-shirt che ti va bene.' },
   teeD: { def: 'M', head: ['Taglia', 'Lunghezza', 'Larghezza', 'Manica'], rows: [['XS', 61.8, 46.5, 15], ['S', 62.8, 48.5, 15.4], ['M', 64, 51, 16], ['L', 65.2, 53.5, 16.6], ['XL', 66.4, 56, 17.2], ['XXL', 67.9, 59, 18], ['3XL', 69.4, 62, 18.8], ['4XL', 70.9, 65, 19.6], ['5XL', 72.4, 68, 20.4]], note: 'Modello donna, più corto e sfiancato. Misure della maglia stesa, in cm.' },
@@ -52,7 +52,7 @@ const PRODUCTS = [
 
   { id: 'fanqlo-trial-team', guide: 'tee', cat: '4x4', name: 'FAN Q LO Trial Team', note: 'La Q è una gomma tassellata con dentro la Jeep del Trial Team 4x4. Si capisce al volo.', price: 18, img: 'img/x/fanqlo-tee.jpg', imgs: ['img/x/fanqlo-tee.jpg', 'img/x/fanqlo-grafica.jpg'], sizes: true, colors: ['Nera'], tag: 'Novità' },
   { id: 'fanqlo-4x4', guide: 'tee', cat: '4x4', name: 'FAN Q LO 4x4 Off-Road', note: 'Stessa Q a gomma tassellata, ma dentro c’è il cinghiale vichingo del 4x4 Off-Road. Con la birra, ovviamente.', price: 18, img: 'img/x/fanqlo4x4-tee.jpg', imgs: ['img/x/fanqlo4x4-tee.jpg', 'img/x/fanqlo4x4-grafica.jpg'], sizes: true, colors: ['Nera'], tag: 'Novità' },
-  { id: 'cappello-4x4', cat: '4x4', name: 'Cappello 4x4 in lana', note: 'Con la patch 4x4 Off Road. Nella seconda foto quello vero, in grigio melange.', price: 12, img: 'img/s/4x4.jpg', imgs: ['img/s/4x4.jpg', 'img/x/cappello-4x4-vero.jpg'] },
+  { id: 'cappello-4x4', cat: '4x4', name: 'Cappello 4x4 in lana', note: 'Con la patch 4x4 Off Road. In nero o in grigio melange.', price: 12, img: 'img/s/4x4.jpg', imgs: ['img/s/4x4.jpg', 'img/x/cappello-4x4-vero.jpg'], colorImgs: { Nero: 'img/s/4x4.jpg', 'Grigio melange': 'img/x/cappello-4x4-vero.jpg' }, colors: ['Nero', 'Grigio melange'] },
   { id: 'cintura-4x4', cat: '4x4', name: 'Cintura 4x4 in cuoio', note: 'Cuoio nero con cuciture rosse, grafica 4x4 Off Road e battistrada. Personalizzabile col tuo nome.', price: 70, img: 'img/s/cintura.jpg', pos: '50% 62%', imgs: ['img/s/cintura.jpg', 'img/p/cintura-4x4-cuoio.jpg'], nome: true },
 
   { id: 'patch-edt', cat: 'small', name: 'Patch EDT', note: 'In stoffa, 8 × 7 cm.', price: 10, img: 'img/s/c-patch.jpg', imgs: ['img/s/c-patch.jpg', 'img/s/adesivi.jpg'], small: true },
