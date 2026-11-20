@@ -52,7 +52,7 @@ const PRODUCTS = [
 
   { id: 'fanqlo-trial-team', guide: 'tee', cat: '4x4', name: 'FAN Q LO Trial Team', note: 'La Q è una gomma tassellata con dentro la Jeep del Trial Team 4x4. Si capisce al volo.', price: 18, img: 'img/x/fanqlo-tee.jpg', imgs: ['img/x/fanqlo-tee.jpg', 'img/x/fanqlo-grafica.jpg'], sizes: true, colors: ['Nera'], tag: 'Novità' },
   { id: 'fanqlo-4x4', guide: 'tee', cat: '4x4', name: 'FAN Q LO 4x4 Off-Road', note: 'Stessa Q a gomma tassellata, ma dentro c’è il cinghiale vichingo del 4x4 Off-Road. Con la birra, ovviamente.', price: 18, img: 'img/x/fanqlo4x4-tee.jpg', imgs: ['img/x/fanqlo4x4-tee.jpg', 'img/x/fanqlo4x4-grafica.jpg'], sizes: true, colors: ['Nera'], tag: 'Novità' },
-  { id: 'cappello-4x4', cat: '4x4', name: 'Cappello 4x4 in lana', note: 'Con la patch 4x4 Off Road.', price: 12, img: 'img/s/4x4.jpg' },
+  { id: 'cappello-4x4', cat: '4x4', name: 'Cappello 4x4 in lana', note: 'Con la patch 4x4 Off Road. Nella seconda foto quello vero, in grigio melange.', price: 12, img: 'img/s/4x4.jpg', imgs: ['img/s/4x4.jpg', 'img/x/cappello-4x4-vero.jpg'] },
   { id: 'cintura-4x4', cat: '4x4', name: 'Cintura 4x4 in cuoio', note: 'Cuoio nero con cuciture rosse, grafica 4x4 Off Road e battistrada. Personalizzabile col tuo nome.', price: 70, img: 'img/s/cintura.jpg', pos: '50% 62%', imgs: ['img/s/cintura.jpg', 'img/p/cintura-4x4-cuoio.jpg'], nome: true },
 
   { id: 'patch-edt', cat: 'small', name: 'Patch EDT', note: 'In stoffa, 8 × 7 cm.', price: 10, img: 'img/s/c-patch.jpg', imgs: ['img/s/c-patch.jpg', 'img/s/adesivi.jpg'], small: true },
@@ -64,6 +64,7 @@ const PRODUCTS = [
   { id: 'adesivo-grigliare', cat: 'small', name: 'Adesivo Grigliare humanum est', note: '9 × 6 cm.', price: 1, img: 'img/s/q-adesivo-grigliare.jpg', imgs: ['img/s/q-adesivo-grigliare.jpg', 'img/x/adesivo-grigliare.jpg'], small: true },
   { id: 'adesivo-iwantyou', cat: 'small', name: 'Adesivo I want you for giri easy', note: 'Il reclutamento ufficiale EDT.', price: 1, img: 'img/s/q-adesivo-iwantyou.jpg', imgs: ['img/s/q-adesivo-iwantyou.jpg', 'img/x/adesivo-iwantyou.jpg'], small: true, tag: 'Novità' },
   { id: 'adesivo-sanmiti', cat: 'small', name: 'Adesivo San Miti', note: "Protettore dell'EDT. Attaccalo sul parafango, non si sa mai.", price: 1, img: 'img/s/q-adesivo-sanmiti.jpg', imgs: ['img/s/q-adesivo-sanmiti.jpg', 'img/x/adesivo-sanmiti.jpg'], small: true, tag: 'Novità' },
+  { id: 'adesivo-sanmiti-olo', cat: 'small', name: 'Adesivo San Miti olografico', note: "Sagomato e olografico: il Protettore dell'EDT brilla al sole e benedice il parafango.", price: 1.5, img: 'img/s/q-adesivo-sanmiti-olo.jpg', imgs: ['img/s/q-adesivo-sanmiti-olo.jpg', 'img/x/adesivo-sanmiti-olo.jpg'], small: true, tag: 'Novità' },
   { id: 'calamita-stemma', cat: 'small', name: 'Calamita stemma EDT', note: '65 × 76 mm.', price: 1.5, img: 'img/s/c-calamita-stemma.jpg', imgs: ['img/s/c-calamita-stemma.jpg', 'img/s/adesivi.jpg'], small: true },
   { id: 'calamita-edt', cat: 'small', name: 'Calamita EDT', note: '8 × 8 cm.', price: 1.5, img: 'img/s/c-calamita.jpg', imgs: ['img/s/c-calamita.jpg', 'img/s/adesivi.jpg'], small: true },
   { id: 'spilla-classica', cat: 'small', name: 'Spilla EDT classica', note: '3 × 3 cm.', price: 1.5, img: 'img/s/c-spilla.jpg', imgs: ['img/s/c-spilla.jpg', 'img/s/adesivi.jpg'], small: true },
