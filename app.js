@@ -7,6 +7,15 @@ const SITE_URL = 'https://endurodrinkingteam.com/';
 const ORDER_EMAIL = 'ordini@endurodrinkingteam.com';
 const SHIP_SMALL = 2;   // solo adesivi, spille, calamite, patch: in busta
 const SHIP_FULL = 7;    // appena c'è un capo o un oggetto grande
+const SHIP_FREE_FROM = 60;   // da questa spesa in su la spedizione è gratuita (0 = mai)
+/* Iscrizione alle novità: finché restano vuoti, la sezione non compare.
+   WHATSAPP_CHANNEL = link del canale WhatsApp (https://whatsapp.com/channel/…)
+   NEWSLETTER_URL   = indirizzo "action" del modulo Brevo (https://…sibforms.com/serve/…) */
+const WHATSAPP_CHANNEL = '';
+const NEWSLETTER_URL = '';
+/* Foto vere di chi indossa l'EDT: { img: 'img/visti/nome.jpg', chi: 'Nome', dove: 'Motovigna 2026', id: 'id-prodotto' }.
+   Finché l'elenco è vuoto la striscia "Visti in giro" non compare. */
+const VISTI = [];
 const SW = { Bianca: '#f5f5f2', Nera: '#151515', Rossa: '#d0201a', Blu: '#1d3f8f', Arancio: '#f07d1a', Grigia: '#8a8a88', Nero: '#151515', 'Grigio melange': '#6f6d6a' };
 const GUIDE = {
   tee: { def: 'L', head: ['Taglia', 'Lunghezza', 'Larghezza'], rows: [['S', 70, 50], ['M', 72, 53], ['L', 74, 56], ['XL', 76, 59], ['XXL', 78, 62], ['3XL', 80, 65], ['4XL', 82, 68], ['5XL', 84, 71]], note: 'Misure della maglia stesa, in cm. Confrontale con una t-shirt che ti va bene.' },
@@ -55,15 +64,17 @@ const PRODUCTS = [
   { id: 'cappello-4x4', cat: '4x4', name: 'Cappello 4x4 in lana', note: 'Con la patch 4x4 Off Road. In nero o in grigio melange.', price: 12, img: 'img/s/4x4.jpg', imgs: ['img/s/4x4.jpg', 'img/x/cappello-4x4-vero.jpg'], colorImgs: { Nero: 'img/s/4x4.jpg', 'Grigio melange': 'img/x/cappello-4x4-vero.jpg' }, colors: ['Nero', 'Grigio melange'] },
   { id: 'cintura-4x4', cat: '4x4', name: 'Cintura 4x4 in cuoio', note: 'Cuoio nero con cuciture rosse, grafica 4x4 Off Road e battistrada. Personalizzabile col tuo nome.', price: 70, img: 'img/s/cintura.jpg', pos: '50% 62%', imgs: ['img/s/cintura.jpg', 'img/p/cintura-4x4-cuoio.jpg'], nome: true },
 
+  { id: 'kit-5-adesivi', cat: 'small', name: 'Kit 5 adesivi a scelta', note: 'Ne scegli cinque tra quelli da 1 € e ne paghi quattro.', price: 4, img: 'img/s/adesivi.jpg', small: true, pick: 5, tag: 'Offerta' },
+  { id: 'kit-adesivi-completo', cat: 'small', name: 'Kit adesivi completo', note: 'Tutti e nove gli adesivi EDT, i due olografici compresi. Presi uno a uno costano 10 €.', price: 8, img: 'img/s/kit9.jpg', imgs: ['img/s/kit9.jpg', 'img/s/adesivi2.jpg'], small: true, tag: 'Offerta' },
   { id: 'patch-edt', cat: 'small', name: 'Patch EDT', note: 'In stoffa, 8 × 7 cm.', price: 10, img: 'img/s/c-patch.jpg', imgs: ['img/s/c-patch.jpg', 'img/s/adesivi.jpg'], small: true },
-  { id: 'adesivo-classico', cat: 'small', name: 'Adesivo EDT grande', note: 'Il cinghiale 2026, 10 × 10 cm.', price: 1, img: 'img/s/c-classico.jpg', imgs: ['img/s/c-classico.jpg', 'img/s/adesivi.jpg'], small: true },
-  { id: 'adesivo-2020', cat: 'small', name: 'Adesivo EDT 2026', note: '7 × 7 cm.', price: 1, img: 'img/s/c-2020.jpg', imgs: ['img/s/c-2020.jpg', 'img/s/adesivi.jpg'], small: true },
+  { id: 'adesivo-classico', kit: 'EDT grande', cat: 'small', name: 'Adesivo EDT grande', note: 'Il cinghiale 2026, 10 × 10 cm.', price: 1, img: 'img/s/c-classico.jpg', imgs: ['img/s/c-classico.jpg', 'img/s/adesivi.jpg'], small: true },
+  { id: 'adesivo-2020', kit: 'EDT 2026', cat: 'small', name: 'Adesivo EDT 2026', note: '7 × 7 cm.', price: 1, img: 'img/s/c-2020.jpg', imgs: ['img/s/c-2020.jpg', 'img/s/adesivi.jpg'], small: true },
   { id: 'adesivo-olografico', cat: 'small', name: 'Adesivo olografico EDT', note: '7 × 7 cm, brilla al sole.', price: 1.5, img: 'img/s/c-olografico.jpg', imgs: ['img/s/c-olografico.jpg', 'img/s/adesivi.jpg'], small: true },
-  { id: 'stemma-2020', cat: 'small', name: 'Adesivo stemma EDT', note: '7 × 7 cm.', price: 1, img: 'img/s/c-stemma.jpg', imgs: ['img/s/c-stemma.jpg', 'img/s/adesivi.jpg'], small: true },
-  { id: 'adesivo-piemonte', cat: 'small', name: 'Adesivo Enduro Piemonte', note: '8 × 8 cm.', price: 1, img: 'img/s/q-adesivo-piemonte.jpg', imgs: ['img/s/q-adesivo-piemonte.jpg', 'img/x/adesivo-piemonte.jpg'], small: true },
-  { id: 'adesivo-grigliare', cat: 'small', name: 'Adesivo Grigliare humanum est', note: '9 × 6 cm.', price: 1, img: 'img/s/q-adesivo-grigliare.jpg', imgs: ['img/s/q-adesivo-grigliare.jpg', 'img/x/adesivo-grigliare.jpg'], small: true },
-  { id: 'adesivo-iwantyou', cat: 'small', name: 'Adesivo I want you for giri easy', note: 'Il reclutamento ufficiale EDT.', price: 1, img: 'img/s/q-adesivo-iwantyou.jpg', imgs: ['img/s/q-adesivo-iwantyou.jpg', 'img/x/adesivo-iwantyou.jpg'], small: true, tag: 'Novità' },
-  { id: 'adesivo-sanmiti', cat: 'small', name: 'Adesivo San Miti', note: "Protettore dell'EDT. Attaccalo sul parafango, non si sa mai.", price: 1, img: 'img/s/q-adesivo-sanmiti.jpg', imgs: ['img/s/q-adesivo-sanmiti.jpg', 'img/x/adesivo-sanmiti.jpg'], small: true, tag: 'Novità' },
+  { id: 'stemma-2020', kit: 'Stemma', cat: 'small', name: 'Adesivo stemma EDT', note: '7 × 7 cm.', price: 1, img: 'img/s/c-stemma.jpg', imgs: ['img/s/c-stemma.jpg', 'img/s/adesivi.jpg'], small: true },
+  { id: 'adesivo-piemonte', kit: 'Enduro Piemonte', cat: 'small', name: 'Adesivo Enduro Piemonte', note: '8 × 8 cm.', price: 1, img: 'img/s/q-adesivo-piemonte.jpg', imgs: ['img/s/q-adesivo-piemonte.jpg', 'img/x/adesivo-piemonte.jpg'], small: true },
+  { id: 'adesivo-grigliare', kit: 'Grigliare', cat: 'small', name: 'Adesivo Grigliare humanum est', note: '9 × 6 cm.', price: 1, img: 'img/s/q-adesivo-grigliare.jpg', imgs: ['img/s/q-adesivo-grigliare.jpg', 'img/x/adesivo-grigliare.jpg'], small: true },
+  { id: 'adesivo-iwantyou', kit: 'I want you', cat: 'small', name: 'Adesivo I want you for giri easy', note: 'Il reclutamento ufficiale EDT.', price: 1, img: 'img/s/q-adesivo-iwantyou.jpg', imgs: ['img/s/q-adesivo-iwantyou.jpg', 'img/x/adesivo-iwantyou.jpg'], small: true, tag: 'Novità' },
+  { id: 'adesivo-sanmiti', kit: 'San Miti', cat: 'small', name: 'Adesivo San Miti', note: "Protettore dell'EDT. Attaccalo sul parafango, non si sa mai.", price: 1, img: 'img/s/q-adesivo-sanmiti.jpg', imgs: ['img/s/q-adesivo-sanmiti.jpg', 'img/x/adesivo-sanmiti.jpg'], small: true, tag: 'Novità' },
   { id: 'adesivo-sanmiti-olo', cat: 'small', name: 'Adesivo San Miti olografico', note: "Sagomato e olografico: il Protettore dell'EDT brilla al sole e benedice il parafango.", price: 1.5, img: 'img/s/q-adesivo-sanmiti-olo.jpg', imgs: ['img/s/q-adesivo-sanmiti-olo.jpg', 'img/x/adesivo-sanmiti-olo.jpg'], small: true, tag: 'Novità' },
   { id: 'calamita-stemma', cat: 'small', name: 'Calamita stemma EDT', note: '65 × 76 mm.', price: 1.5, img: 'img/s/c-calamita-stemma.jpg', imgs: ['img/s/c-calamita-stemma.jpg', 'img/s/adesivi.jpg'], small: true },
   { id: 'calamita-edt', cat: 'small', name: 'Calamita EDT', note: '8 × 8 cm.', price: 1.5, img: 'img/s/c-calamita.jpg', imgs: ['img/s/c-calamita.jpg', 'img/s/adesivi.jpg'], small: true },
@@ -93,8 +104,9 @@ const imgFor = (p, color) => (color && p.colorImgs && p.colorImgs[color.charAt(0
 function totals() {
   const sub = cart.reduce((s, l) => s + byId(l.id).price * l.qty, 0);
   const onlySmall = cart.length > 0 && cart.every(l => byId(l.id).small);
-  const ship = cart.length === 0 ? 0 : onlySmall ? SHIP_SMALL : SHIP_FULL;
-  return { sub, ship, tot: Math.round((sub + ship) * 100) / 100, onlySmall };
+  const free = cart.length > 0 && SHIP_FREE_FROM > 0 && sub >= SHIP_FREE_FROM;
+  const ship = cart.length === 0 || free ? 0 : onlySmall ? SHIP_SMALL : SHIP_FULL;
+  return { sub, ship, tot: Math.round((sub + ship) * 100) / 100, onlySmall, free };
 }
 
 /* ---------- shop ---------- */
@@ -114,7 +126,7 @@ const GROUPS = [
   { id: 'gara', title: 'Da gara', sub: 'La linea di Katiusha. Completo, maglia e pantalone con il tuo nome e il tuo numero.' },
   { id: 'wear', title: 'Da indossare', sub: 'La linea di Svetlana. T-shirt, felpe e berretti per quando scendi dalla moto.' },
   { id: '4x4', title: '4x4', sub: 'La linea di Irina. Per chi gira su quattro ruote.' },
-  { id: 'small', title: 'Adesivi e piccoli', sub: 'Da 1 €. Arrivano in busta con 2 € di spedizione.' },
+  { id: 'small', title: 'Adesivi e piccoli', sub: 'Da 1 €, oppure cinque a 4 € con il kit. Arrivano in busta con 2 € di spedizione.' },
 ];
 function cardHtml(p, i) {
   return `
@@ -224,12 +236,14 @@ function openProduct(id) {
   if (p.sizes && p.guide === 'tee') f += `<fieldset class="opt"><legend>Modello</legend><div class="seg">${['Uomo', 'Donna'].map((m, i) =>
     `<label><input type="radio" name="model" value="${m}" ${i ? '' : 'checked'}><span>${m}</span></label>`).join('')}</div></fieldset>`;
   if (p.sizes) f += `<div id="pd-size">${sizesHtml(p, 'Uomo')}</div>`;
+  if (p.pick) f += `<fieldset class="opt pick"><legend>Scegli ${p.pick} adesivi <b id="pd-pick-n">0 di ${p.pick}</b></legend><div class="pick__grid">${PRODUCTS.filter(x => x.kit).map(x =>
+    `<label><input type="checkbox" name="pick" value="${esc(x.kit)}"><span><img loading="lazy" decoding="async" src="${x.img}" alt=""><em>${esc(x.kit)}</em></span></label>`).join('')}</div></fieldset>`;
   if (p.nome) f += `<label class="field"><span>Nome da stampare</span><input name="nome" maxlength="14" placeholder="Es. GABBAH" autocomplete="off" required></label>`;
   if (p.numero) f += `<label class="field"><span>Numero</span><input name="numero" inputmode="numeric" pattern="[0-9]{1,3}" maxlength="3" placeholder="Es. 14" required></label>`;
   f += `<div class="field field--qty"><span id="pd-qty-l">Quantità</span><div class="qty"><button type="button" data-q="-1" aria-label="Uno in meno">−</button><input name="qty" type="number" min="1" max="50" value="1" required aria-labelledby="pd-qty-l"><button type="button" data-q="1" aria-label="Uno in più">+</button></div></div>`;
   $('#pd-fields').innerHTML = f;
   $('#pd-ship').textContent = (p.small ? 'Spedizione 2 € in busta, se ordini solo adesivi e piccoli.' : 'Spedizione 7 € in tutta Italia.') +
-    ' Spediamo in 3-4 giorni.' + (p.nome || p.numero ? ' Prodotto personalizzato: non si può rendere.' : '');
+    (SHIP_FREE_FROM ? ` Gratuita sopra i ${SHIP_FREE_FROM} € di spesa.` : '') + ' Spediamo in 3-4 giorni.' + (p.nome || p.numero ? ' Prodotto personalizzato: non si può rendere.' : '');
   pdTotal();
   history.replaceState(null, '', '#p=' + p.id);
   dlg.showModal();
@@ -239,8 +253,13 @@ $('#pd-form').addEventListener('submit', e => {
   e.preventDefault();
   const fd = new FormData(e.target);
   const line = { id: current.id, qty: Math.max(1, parseInt(fd.get('qty'), 10) || 1) };
+  if (current.pick) {
+    const scelti = fd.getAll('pick');
+    if (scelti.length !== current.pick) { toast(`Scegli ${current.pick} adesivi: ne hai ${scelti.length}`); const pk = $('#pd-fields .pick'); if (pk) pk.scrollIntoView({ block: 'center' }); return; }
+    line.pick = scelti.join(', ');
+  }
   ['color', 'model', 'size', 'size2', 'nome', 'numero'].forEach(k => { if (fd.get(k)) line[k] = String(fd.get(k)).trim().toUpperCase(); });
-  const same = cart.find(l => ['id', 'color', 'model', 'size', 'size2', 'nome', 'numero'].every(k => l[k] === line[k]));
+  const same = cart.find(l => ['id', 'color', 'model', 'size', 'size2', 'nome', 'numero', 'pick'].every(k => l[k] === line[k]));
   same ? same.qty += line.qty : cart.push(line);
   const flyFrom = $('#pd-main'), flyRect = flyFrom && flyFrom.getBoundingClientRect(), flySrc = flyFrom && flyFrom.src;
   save(); renderCart(); dlg.close();
@@ -263,7 +282,7 @@ $('#pd-close').addEventListener('click', () => dlg.close());
 /* link diretto al prodotto: endurodrinkingteam.com/#p=<id> apre la sua scheda */
 dlg.addEventListener('close', () => history.replaceState(null, '', location.pathname + location.search));
 $('#pd-share').addEventListener('click', async () => {
-  const url = SITE_URL + '#p=' + current.id;
+  const url = SITE_URL + 'p/' + current.id + '/';
   try {
     if (navigator.share) await navigator.share({ title: current.name + ' · Enduro Drinking Team', url });
     else { await navigator.clipboard.writeText(url); toast('Link copiato'); }
@@ -278,6 +297,13 @@ function openFromHash() {
 window.addEventListener('hashchange', openFromHash);
 window.addEventListener('load', () => setTimeout(openFromHash, 400));
 $('#pd-fields').addEventListener('change', e => {
+  if (e.target.name === 'pick') {
+    const box = [...$('#pd-fields').querySelectorAll('[name="pick"]')], n = box.filter(b => b.checked).length;
+    if (n > current.pick) { e.target.checked = false; toast(`Ne puoi scegliere ${current.pick}`); return; }
+    $('#pd-pick-n').textContent = `${n} di ${current.pick}`;
+    box.forEach(b => { b.disabled = n >= current.pick && !b.checked; });
+    return;
+  }
   if (e.target.name === 'model') { $('#pd-size').innerHTML = sizesHtml(current, e.target.value); return; }
   if (e.target.name !== 'color' || !current.colorImgs) return;
   const src = current.colorImgs[e.target.value]; if (!src) return;
@@ -300,13 +326,13 @@ dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
 /* ---------- carrello ---------- */
 const drawer = $('#cart');
 function lineDesc(l) {
-  return [l.color, l.model && `modello ${l.model.toLowerCase()}`, l.size && (l.size2 ? `maglia ${l.size}, pantalone ${l.size2}` : `taglia ${l.size}`), l.nome && `nome ${l.nome}`, l.numero && `n° ${l.numero}`].filter(Boolean).join(', ');
+  return [l.color, l.model && `modello ${l.model.toLowerCase()}`, l.size && (l.size2 ? `maglia ${l.size}, pantalone ${l.size2}` : `taglia ${l.size}`), l.nome && `nome ${l.nome}`, l.numero && `n° ${l.numero}`, l.pick].filter(Boolean).join(', ');
 }
 function renderCart() {
   const n = cart.reduce((s, l) => s + l.qty, 0);
   $('#cart-count').textContent = n;
   $('#cart-count').hidden = n === 0;
-  const { sub, ship, tot, onlySmall } = totals();
+  const { sub, ship, tot, onlySmall, free } = totals();
   if (!cart.length) {
     $('#cart-lines').innerHTML = `<p class="empty">Il carrello è vuoto. Parti dagli adesivi: costano meno di una birra.</p>`;
   } else {
@@ -322,8 +348,21 @@ function renderCart() {
     }).join('');
   }
   $('#t-sub').textContent = eur(sub);
-  $('#t-ship').textContent = cart.length ? eur(ship) : '—';
+  $('#t-ship').textContent = !cart.length ? '—' : free ? 'Gratis' : eur(ship);
   $('#t-ship-note').textContent = !cart.length ? '' : onlySmall ? 'In busta: solo adesivi, spille, calamite e patch.' : 'Spedizione con corriere.';
+  const fr = $('#t-free');
+  if (fr) {
+    fr.hidden = !cart.length || !SHIP_FREE_FROM;
+    fr.classList.toggle('ok', free);
+    const manca = Math.max(0, SHIP_FREE_FROM - sub);
+    fr.innerHTML = free ? `<span>Spedizione gratuita: sopra i ${SHIP_FREE_FROM} € la offre l'EDT.</span>`
+      : `<span>Ti mancano <b>${eur(manca)}</b> per la spedizione gratuita.</span><i><u style="width:${Math.min(100, Math.round(sub / (SHIP_FREE_FROM || 1) * 100))}%"></u></i>`;
+  }
+  const sfusi = cart.reduce((s, l) => s + (byId(l.id).kit ? l.qty : 0), 0), kh = $('#t-kit');
+  if (kh) {
+    kh.hidden = sfusi < 5;
+    if (sfusi >= 5) kh.innerHTML = `Hai ${sfusi} adesivi da 1 €: con il kit ne prendi cinque a 4 €. <button type="button" data-open="kit-5-adesivi">Vedi il kit</button>`;
+  }
   $('#t-tot').textContent = eur(tot);
   $('#checkout').hidden = !cart.length;
 }
@@ -433,7 +472,24 @@ function flyToCart(src, from) {
   ], { duration: 650, easing: 'cubic-bezier(.5,0,.3,1)' }).onfinish = () => { im.remove(); bump(); };
 }
 
-renderChips(); renderVetrina(); renderGrid(); renderCart();
+function renderNovita() {
+  const box = $('#novita'); if (!box) return;
+  if (!WHATSAPP_CHANNEL && !NEWSLETTER_URL) { box.hidden = true; return; }
+  box.hidden = false;
+  const wa = $('#novita-wa'), nl = $('#novita-form');
+  if (wa) { wa.hidden = !WHATSAPP_CHANNEL; wa.href = WHATSAPP_CHANNEL || '#'; }
+  if (nl) { nl.hidden = !NEWSLETTER_URL; nl.action = NEWSLETTER_URL || ''; }
+}
+function renderVisti() {
+  const box = $('#visti'); if (!box) return;
+  if (!VISTI.length) { box.hidden = true; return; }
+  box.hidden = false;
+  $('#visti-row').innerHTML = VISTI.map(v => {
+    const p = v.id && byId(v.id), txt = [v.chi, v.dove].filter(Boolean).join(', ');
+    return `<figure class="visto">${p ? `<button type="button" data-open="${p.id}" aria-label="${esc(txt || 'Foto')}: vedi ${esc(p.name)}">` : '<div>'}<img loading="lazy" decoding="async" src="${v.img}" alt="${esc(txt || 'Foto di un cliente EDT')}">${p ? '</button>' : '</div>'}<figcaption>${v.chi ? `<strong>${esc(v.chi)}</strong>` : ''}${v.dove ? `<span>${esc(v.dove)}</span>` : ''}${p ? `<em>${esc(p.name)}</em>` : ''}</figcaption></figure>`;
+  }).join('');
+}
+renderChips(); renderVetrina(); renderGrid(); renderCart(); renderNovita(); renderVisti();
 
 /* header pieno quando si scorre */
 const topBar = $('.top');
