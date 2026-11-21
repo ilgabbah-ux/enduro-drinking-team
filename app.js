@@ -13,9 +13,6 @@ const SHIP_FREE_FROM = 60;   // da questa spesa in su la spedizione è gratuita 
    NEWSLETTER_URL   = indirizzo "action" del modulo Brevo (https://…sibforms.com/serve/…) */
 const WHATSAPP_CHANNEL = '';
 const NEWSLETTER_URL = '';
-/* Foto vere di chi indossa l'EDT: { img: 'img/visti/nome.jpg', chi: 'Nome', dove: 'Motovigna 2026', id: 'id-prodotto' }.
-   Finché l'elenco è vuoto la striscia "Visti in giro" non compare. */
-const VISTI = [];
 const SW = { Bianca: '#f5f5f2', Nera: '#151515', Rossa: '#d0201a', Blu: '#1d3f8f', Arancio: '#f07d1a', Grigia: '#8a8a88', Nero: '#151515', 'Grigio melange': '#6f6d6a' };
 const GUIDE = {
   tee: { def: 'L', head: ['Taglia', 'Lunghezza', 'Larghezza'], rows: [['S', 70, 50], ['M', 72, 53], ['L', 74, 56], ['XL', 76, 59], ['XXL', 78, 62], ['3XL', 80, 65], ['4XL', 82, 68], ['5XL', 84, 71]], note: 'Misure della maglia stesa, in cm. Confrontale con una t-shirt che ti va bene.' },
@@ -480,16 +477,7 @@ function renderNovita() {
   if (wa) { wa.hidden = !WHATSAPP_CHANNEL; wa.href = WHATSAPP_CHANNEL || '#'; }
   if (nl) { nl.hidden = !NEWSLETTER_URL; nl.action = NEWSLETTER_URL || ''; }
 }
-function renderVisti() {
-  const box = $('#visti'); if (!box) return;
-  if (!VISTI.length) { box.hidden = true; return; }
-  box.hidden = false;
-  $('#visti-row').innerHTML = VISTI.map(v => {
-    const p = v.id && byId(v.id), txt = [v.chi, v.dove].filter(Boolean).join(', ');
-    return `<figure class="visto">${p ? `<button type="button" data-open="${p.id}" aria-label="${esc(txt || 'Foto')}: vedi ${esc(p.name)}">` : '<div>'}<img loading="lazy" decoding="async" src="${v.img}" alt="${esc(txt || 'Foto di un cliente EDT')}">${p ? '</button>' : '</div>'}<figcaption>${v.chi ? `<strong>${esc(v.chi)}</strong>` : ''}${v.dove ? `<span>${esc(v.dove)}</span>` : ''}${p ? `<em>${esc(p.name)}</em>` : ''}</figcaption></figure>`;
-  }).join('');
-}
-renderChips(); renderVetrina(); renderGrid(); renderCart(); renderNovita(); renderVisti();
+renderChips(); renderVetrina(); renderGrid(); renderCart(); renderNovita();
 
 /* header pieno quando si scorre */
 const topBar = $('.top');

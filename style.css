@@ -1087,7 +1087,7 @@ img { height: auto; }
 .foot__end a { color: inherit; }
 .foot__end a:hover { color: var(--birra); }
 
-/* ===== v15 · kit adesivi, spedizione gratuita, domande frequenti, visti in giro, novità, pagine prodotto ===== */
+/* ===== v15 · kit adesivi, spedizione gratuita, domande frequenti, novità, pagine prodotto ===== */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .pick legend b { margin-left: 8px; font-weight: 800; color: #8a5a00; }
 .pick__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
@@ -1120,19 +1120,9 @@ img { height: auto; }
 .faq__q summary:focus-visible { outline: 3px solid var(--birra); outline-offset: 2px; }
 .faq__q p { margin: 0 0 16px; max-width: 66ch; color: var(--nebbia); line-height: 1.55; }
 .faq__more { margin: 16px 0 0; font-size: .9rem; color: var(--nebbia); }
-.faq__more a, .visti .lead a { color: var(--birra); text-decoration: underline; text-underline-offset: 3px; }
+.faq__more a { color: var(--birra); text-decoration: underline; text-underline-offset: 3px; }
 
-.visti { padding: 64px 0; background: var(--terra); }
-.visti[hidden], .novita[hidden] { display: none; }
-.visti__row { display: flex; gap: 14px; margin-top: 26px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; -webkit-overflow-scrolling: touch; }
-.visto { flex: 0 0 min(62vw, 260px); margin: 0; scroll-snap-align: start; }
-.visto button, .visto > div { display: block; width: 100%; padding: 0; border: 0; background: none; border-radius: 14px; overflow: hidden; cursor: pointer; }
-.visto > div { cursor: default; }
-.visto img { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; }
-.visto figcaption { display: grid; gap: 2px; padding: 10px 2px 0; font-size: .9rem; color: var(--nebbia); }
-.visto figcaption strong { color: var(--carta); }
-.visto figcaption em { font-style: normal; color: var(--birra); font-weight: 700; }
-
+.novita[hidden] { display: none; }
 .novita { padding: 46px 0; background: var(--birra); color: var(--ink); }
 .novita__in { display: grid; gap: 22px; align-items: center; }
 .novita h2 { margin: 0 0 6px; color: var(--ink); font-size: clamp(1.8rem, 6vw, 2.6rem); }
